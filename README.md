@@ -1,5 +1,7 @@
 # Das Diagramm lesen: d-Separation – Streamlit-Demo
 
+**[→ Demo live ausprobieren](https://sebastianhanisch-d-separation-demo.streamlit.app/)**
+
 Zweites Stück der Linie **Kausale Diagramme und Adjustierung** in der „Konzepte“-Reihe im Portfolio von [Sebastian Hanisch](https://sebastianhanisch.net) (Operations Research und Machine Learning). Nachfolger von [konfundierung-demo](https://github.com/sebastian-hanisch/konfundierung-demo): Dort zeigten zwei verschiedene Ursachen-Diagramme dieselben Daten. Hier steht, **was** ein Diagramm über die Daten behauptet, und wie man es liest.
 
 ## Kernfrage
@@ -92,4 +94,4 @@ Streamlit Cloud: Python 3.12.
 
 Gebaut mit Streamlit, Plotly, numpy, pandas und fpdf2.
 
-Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zu den Demos: [Interaktive Demos](https://sebastianhanisch.net/demos.html).
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Kausale Diagramme: von Konfundierung bis Wahl](https://sebastianhanisch.net/konzepte-kausale-diagramme.html).
