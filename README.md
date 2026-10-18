@@ -6,7 +6,7 @@ Zweites Stück der Linie **Kausale Diagramme und Adjustierung** in der „Konzep
 
 ## Kernfrage
 
-Ein Diagramm behauptet nur, was es weglässt: Jeder fehlende Pfeil ist eine Unabhängigkeit, die sich an Daten prüfen lässt. Wie liest man diese Aussagen aus dem Diagramm, wann öffnet Bedingen einen Pfad, wie oft lehnen Daten ein richtiges Diagramm ab, und welche Fehler im Diagramm bleiben unsichtbar?
+Ein Diagramm behauptet nur, was es weglässt: Jeder fehlende Pfeil bedeutet eine Unabhängigkeit, die sich an Daten prüfen lässt, wenn der Pfeil nicht zu schwach ist (Experiment 4). Wie liest man diese Aussagen aus dem Diagramm, wann öffnet Bedingen einen Pfad, wie oft lehnen Daten ein richtiges Diagramm ab, und welche Fehler im Diagramm bleiben unsichtbar?
 
 ## Modell
 
@@ -19,7 +19,7 @@ Ein Diagramm behauptet nur, was es weglässt: Jeder fehlende Pfeil ist eine Unab
 
 - **d-Separation** über die Moralisierung des Vorfahren-Graphen (Lauritzen u. a. 1990). Die Pfade mit Blockierungsgrund (Kette oder Gabel mit Zielknoten in Z, Collider ohne Nachfahren in Z) sind der zweite Rechenweg und die Erklärung in der App.
 - **Test:** Teilkorrelation über die Präzisionsmatrix der Stichproben-Kovarianz, Fisher-z-p-Wert; roh zum 5-%-Niveau je Aussage und mit Bonferroni (Holm lehnt „mindestens eine“ genau dann ab wie Bonferroni und fehlt deshalb).
-- **Experimente** laufen über feste Zufallsströme (SplitMix64): 300 bis 500 Wiederholungen je Zelle, nie ein einzelner Seed.
+- **Experimente** laufen über feste Zufallsströme (SplitMix64): Experiment 2 und 3: 300 bzw. 500 Wiederholungen je Zelle; Experiment 4: 200; Experiment 1: ein großes n = 400 000. Die Standard-Stichprobe ist bewusst ein einzelner Seed.
 
 ## Befunde (gemessen, keine Behauptungen)
 
@@ -34,9 +34,9 @@ Alle Zahlen stehen in `tests/test_claims.py`. „Basis“ ist die lokale Markov-
 | Collider im 6-Knoten-Beispiel | Region und Wetter: gegeben Lieferverzug −0,33, gegeben Servicegrad (Nachfahre) −0,17, ohne Bedingung 0. | `test_the_collider_in_the_six_node_world_gives_the_numbers_of_the_assumptions_text` |
 | Standard-Stichprobe (n = 500, Seed 35) | 1 von 12 Aussagen roh abgelehnt, mit Bonferroni keine; Region und Wetter sind d-getrennt (3 blockierte Pfade). | `test_default_sample_rejects_one_of_twelve_raw_and_none_with_bonferroni` |
 | Wird ein Diagramm mit fehlendem Pfeil abgelehnt? | Ja: Pfeil Faktor → Servicegrad (Koeffizient 0,5) fehlt: in **100 %** der Stichproben bei n = 200, 500, 2 000, roh und mit Bonferroni; 4 der 14 Basisaussagen gelten in der Welt nicht. | `test_experiment_2_missing_arrow_is_always_rejected` |
-| Und ein überzähliger Pfeil? | **Nicht häufiger als das wahre Diagramm:** mit Bonferroni 4 bis 6 % (wahr: 3 bis 6 %); roh rund 33 bis 42 % (wahr: 37 bis 46 %). Er behauptet weniger und ist nicht prüfbar. | `test_experiment_2_true_and_extra_arrow_diagrams_are_rejected_about_equally_often` |
-| Wie oft lehnt ein Test das wahre Diagramm ab? | Roh bei n = 500: **40 %** (12 Aussagen) bzw. **47 %** (29); naiv gerechnet 46 % bzw. 77 %, weil die Tests voneinander abhängen. Mit Bonferroni 2 bis 3 %. | `test_experiment_3_family_wise_rejection_of_the_true_diagram` |
-| Wie groß muss ein fehlender Pfeil sein? | Koeffizient 0,2: erkannt in rund 45 % (n = 200), 94 % (n = 500), 100 % (n = 2 000); Koeffizient 0,1: rund 30 % bei n = 500, 93 % bei n = 2 000; Koeffizient 0,05: rund 27 % bei n = 2 000 (200 Wiederholungen je Zelle, Fehler etwa ±3 Punkte). | `test_experiment_4_power_against_a_missing_arrow` |
+| Und ein überzähliger Pfeil? | **Nicht häufiger als das wahre Diagramm:** mit Bonferroni 4 bis 6 % (wahr: 3 bis 6 %); roh rund 33 bis 42 % (wahr: 37 bis 46 %); die Spannen sind Zufallsspannen aus 300 Wiederholungen je Zelle. Alle seine Aussagen sind wahr, er kann nicht widerlegt werden. | `test_experiment_2_true_and_extra_arrow_diagrams_are_rejected_about_equally_often` |
+| Wie oft lehnt ein Test das wahre Diagramm ab? | Roh bei n = 500: **40 %** (12 Aussagen) bzw. **47 %** (29); naiv gerechnet 46 % bzw. 77 %, weil die Tests voneinander abhängen. Mit Bonferroni 2 bis 3 % in diesem Lauf (500 Wiederholungen); auf lange Sicht liegt es näher an den nominalen 5 %. | `test_experiment_3_family_wise_rejection_of_the_true_diagram` |
+| Wie groß muss ein fehlender Pfeil sein? | Koeffizient 0,2: erkannt in rund 45 % (n = 200), 94 % (n = 500), 100 % (n = 2 000); Koeffizient 0,1: rund 30 % bei n = 500, 93 % bei n = 2 000; Koeffizient 0,05: rund 27 % bei n = 2 000 (200 Wiederholungen je Zelle, Standardfehler bis 3,5 Punkte, also ±7 Punkte für 95 %). | `test_experiment_4_power_against_a_missing_arrow` |
 
 ## Ehrliche Grenzen
 
@@ -47,7 +47,7 @@ Alle Zahlen stehen in `tests/test_claims.py`. „Basis“ ist die lokale Markov-
 | **Ein Test je Aussage** | Bei 29 Aussagen wird das wahre Diagramm roh in 47 % der Stichproben abgelehnt. | – |
 | **Ablehnen heißt falsch, Nichtablehnen heißt richtig** | Ein überzähliger Pfeil wird nicht häufiger abgelehnt; 25 Diagramme auf 3 Knoten ergeben nur 11 Aussagenklassen. | Wie falsch darf das Diagramm sein? |
 | **Die Daten bestimmen das Diagramm** | Diagramme derselben Klasse sind nicht zu trennen. | Das Diagramm aus Daten lernen |
-| **Die Aussagen legen die Pfeilrichtungen fest** | Nur ein Collider legt sie fest; eine Kette, eine Gabel und die umgekehrte Kette bilden eine Klasse. | Das Diagramm aus Daten lernen |
+| **Die Aussagen legen die Pfeilrichtungen fest** | Eine Richtung ist nur festgelegt, wenn ein Collider sie erzwingt (auch indirekt über Folgekanten); eine Kette, eine Gabel und die umgekehrte Kette bilden eine Klasse. | Das Diagramm aus Daten lernen |
 
 Die Zahlen gelten für diese erfundene Welt; „Wahrheit“ ist das simulierte Modell, nicht ein Befund über echte Standorte.
 
@@ -55,7 +55,7 @@ Die Zahlen gelten für diese erfundene Welt; „Wahrheit“ ist das simulierte M
 
 - [konfundierung-demo](https://github.com/sebastian-hanisch/konfundierung-demo): zeigt zwei Diagramme mit derselben Verteilung; die Erklärung (beide vollständig, 0 Aussagen) steht hier.
 - [multiple-testing-demo](https://github.com/sebastian-hanisch/multiple-testing-demo): Mehrfachtests und Gewinnerfluch; hier nur als Hinweis auf die 40 bis 47 %.
-- Die Moralisierung nutzt dieselbe Breitensuche wie die Linie *Graphen und Netzwerke*, auf dem moralisierten Graphen.
+- Die Moralisierung nutzt eine einfache Graphsuche (Erreichbarkeit) wie die Linie *Graphen und Netzwerke*, auf dem moralisierten Graphen.
 
 ## Tests
 

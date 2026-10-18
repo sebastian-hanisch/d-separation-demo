@@ -312,7 +312,7 @@ def verdict_check(a: Analysis) -> tuple[str, str]:
         return "info", "Dieses Diagramm behauptet keine Unabhängigkeit: Jedes Paar ist durch einen Pfeil verbunden. Daten können es nicht widerlegen."
     if a.rejected_bonf:
         return "warning", (f"Das Diagramm wird abgelehnt: {a.rejected_bonf} von {k} Aussagen fallen auch mit Bonferroni durch. Mindestens ein fehlender Pfeil "
-                           "steht gegen die Daten.")
+                           "spricht gegen die Daten (Niveau 5 %; eine Ablehnung kommt auch ohne Fehler im Diagramm gelegentlich vor).")
     if a.rejected_raw:
         return "info", (f"Roh werden {a.rejected_raw} von {k} Aussagen abgelehnt, mit Bonferroni keine: Bei {k} Tests ist das ohne jeden Fehler im Diagramm "
                         "häufig. Das Diagramm ist nicht abgelehnt, aber damit nicht bestätigt.")
@@ -331,7 +331,7 @@ def verdict_claim(rows: list) -> tuple[str, str]:
     n = max(r["n"] for r in rows)
     return "info", (f"Bei n = {n} wird das Diagramm mit fehlendem Pfeil in {de(100 * at[('Pfeil Faktor → Servicegrad fehlt', n)]['bonf'], 0)} % der Stichproben "
                     f"abgelehnt (Bonferroni), das wahre in {de(100 * at[('wahres Diagramm', n)]['bonf'], 0)} %, das mit überzähligem Pfeil in "
-                    f"{de(100 * at[('Pfeil Region → Servicegrad überzählig', n)]['bonf'], 0)} %. Ein überzähliger Pfeil ist nicht prüfbar: Er behauptet weniger.")
+                    f"{de(100 * at[('Pfeil Region → Servicegrad überzählig', n)]['bonf'], 0)} %. Ein überzähliger Pfeil behauptet weniger: Alle seine Aussagen sind wahr, er kann nicht widerlegt werden.")
 
 
 def verdict_multitest(rows: list) -> tuple[str, str]:

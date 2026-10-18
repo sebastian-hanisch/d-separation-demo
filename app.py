@@ -282,7 +282,7 @@ st.markdown(
 | **Ein Test je Aussage** | Bei {all_row['k']} Aussagen wird das wahre Diagramm roh in {de(100 * all_row['raw'], 0)} % der Stichproben abgelehnt (Experiment 3). | – |
 | **Ablehnen heißt falsch, Nichtablehnen heißt richtig** | Ein überzähliger Pfeil behauptet weniger und wird nicht häufiger abgelehnt als das wahre Diagramm; aus {cls3['dags']} Diagrammen auf 3 Knoten werden nur {cls3['classes']} Aussagenklassen. | Wie falsch darf das Diagramm sein? |
 | **Die Daten bestimmen das Diagramm** | Diagramme derselben Klasse sind aus Daten nicht zu trennen ({cls4['dags']} auf 4 Knoten, {cls4['classes']} Klassen). | Das Diagramm aus Daten lernen |
-| **Die Aussagen legen die Pfeilrichtungen fest** | Nur ein Collider legt sie fest; Ketten und Gabeln mit denselben Aussagen sind nicht zu unterscheiden (A → M → B, A ← M ← B und A ← M → B bilden eine Klasse). | Das Diagramm aus Daten lernen |
+| **Die Aussagen legen die Pfeilrichtungen fest** | Eine Richtung ist nur festgelegt, wenn ein Collider sie erzwingt (auch indirekt über Folgekanten); Ketten und Gabeln mit denselben Aussagen sind nicht zu unterscheiden (A → M → B, A ← M ← B und A ← M → B bilden eine Klasse). | Das Diagramm aus Daten lernen |
 | **Aussagen sagen, was man festhalten darf** | Welche Variable man festhalten muss, um eine Wirkung zu schätzen, folgt aus denselben Pfaden, braucht aber ein eigenes Kriterium. | Backdoor-Adjustierung |
 """
 )
