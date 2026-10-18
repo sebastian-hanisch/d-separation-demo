@@ -231,7 +231,7 @@ def test_claim_experiment_structure_and_direction():
     rows = ev.claim_experiment(ns=(500,), reps=80)
     by = {r["variant"]: r for r in rows}
     assert set(by) == set(ev.six_variants())
-    assert by["Pfeil Faktor → Servicegrad fehlt"]["bonf"] > 0.9 and by["Pfeil Faktor → Servicegrad fehlt"]["new"] == 4
+    assert by["Pfeil Faktor → Servicegrad fehlt"]["bonf"] > 0.9 and by["Pfeil Faktor → Servicegrad fehlt"]["new"] == 2
     assert by["wahres Diagramm"]["new"] == 0 and by["wahres Diagramm"]["k"] == 12
     assert by["Pfeil Region → Servicegrad überzählig"]["k"] == 11
     for r in rows:

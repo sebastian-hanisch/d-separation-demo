@@ -246,8 +246,8 @@ def claim_experiment(ns=C.EXP_CLAIM_NS, reps: int = C.EXP_CLAIM_REPS) -> list:
         for name, par in variants.items():
             stm = G.local_markov_basis(par)
             _, p = test_statements(cov, stm, n)
-            true_basis = set(G.local_markov_basis(variants["wahres Diagramm"]))
-            rows.append({"variant": name, "n": n, "k": len(stm), "new": sum(1 for s in stm if s not in true_basis),
+            true_par = variants["wahres Diagramm"]
+            rows.append({"variant": name, "n": n, "k": len(stm), "new": sum(1 for x, y, z in stm if not G.d_separated(true_par, x, y, z)),
                          "raw": float(family_rejected(p).mean()), "bonf": float(family_rejected(p, bonferroni=True).mean())})
     return rows
 

@@ -81,13 +81,13 @@ def test_the_collider_in_the_six_node_world_gives_the_numbers_of_the_assumptions
 def test_experiment_2_missing_arrow_is_always_rejected(claim):
     for n in C.EXP_CLAIM_NS:
         r = claim[("Pfeil Faktor → Servicegrad fehlt", n)]
-        assert r["bonf"] == pytest.approx(1.0) and r["raw"] == pytest.approx(1.0) and r["k"] == 14 and r["new"] == 4
+        assert r["bonf"] == pytest.approx(1.0) and r["raw"] == pytest.approx(1.0) and r["k"] == 14 and r["new"] == 2
 
 
 def test_experiment_2_true_and_extra_arrow_diagrams_are_rejected_about_equally_often(claim):
     for n in C.EXP_CLAIM_NS:
         t, e = claim[("wahres Diagramm", n)], claim[("Pfeil Region → Servicegrad überzählig", n)]
-        assert t["k"] == 12 and e["k"] == 11 and e["new"] == 1 and t["new"] == 0
+        assert t["k"] == 12 and e["k"] == 11 and e["new"] == 0 and t["new"] == 0
         assert pct(t["bonf"]) == pytest.approx(5, abs=3.5) and pct(e["bonf"]) == pytest.approx(5, abs=3.5)
         assert 30 <= pct(t["raw"]) <= 50 and 28 <= pct(e["raw"]) <= 48
 
